@@ -11,4 +11,5 @@ public interface ProductService {
     List<ProductResponseDTO> getAllProducts();
     ProductResponseDTO updateProduct(Long id, ProductRequestDTO requestDTO);
     void deleteProduct(Long id);
+    ProductResponseDTO reduceStockWithLock(Long id, Integer quantity);
 }

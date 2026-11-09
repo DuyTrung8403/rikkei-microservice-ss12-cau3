@@ -39,6 +39,17 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(OutOfStockException.class)
+    public ResponseEntity<ApiResponseError> handleOutOfStockException(OutOfStockException ex) {
+        ApiResponseError error = ApiResponseError.builder()
+                .timestamp(LocalDateTime.now())
+                .status(HttpStatus.BAD_REQUEST.value())
+                .error(HttpStatus.BAD_REQUEST.getReasonPhrase())
+                .message(ex.getMessage())
+                .build();
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponseError> handleGenericException(Exception ex) {
         ApiResponseError error = ApiResponseError.builder()

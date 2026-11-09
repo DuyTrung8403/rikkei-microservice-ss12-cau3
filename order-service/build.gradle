@@ -29,6 +29,9 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-kafka'
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 
+	// Redisson for distributed locking
+	implementation 'org.redisson:redisson:3.37.0'
+
 	implementation 'com.fasterxml.jackson.core:jackson-databind'
 	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
 

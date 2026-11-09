@@ -51,4 +51,16 @@ public class ProductController {
         productService.deleteProduct(id);
         return ResponseEntity.noContent().build();
     }
+
+    /**
+     * API Flash Sale đặt mua sản phẩm với khóa phân tán Redisson:
+     * POST /api/v1/products/{id}/purchase?quantity=1
+     */
+    @PostMapping("/{id}/purchase")
+    public ResponseEntity<ProductResponseDTO> purchaseProduct(
+            @PathVariable("id") Long id,
+            @RequestParam(defaultValue = "1") Integer quantity) {
+        ProductResponseDTO updatedProduct = productService.reduceStockWithLock(id, quantity);
+        return ResponseEntity.ok(updatedProduct);
+    }
 }
